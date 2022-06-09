@@ -12,82 +12,6 @@
 <link rel="stylesheet" type="text/css" href="css/hint.css"/>
 <script type="text/javascript" src="lib/ext/head.load.min.js"></script>
 
-<!-- support for embedded visualizations -->
-<script type="text/javascript">
-    var root = ''; // filled in by jekyll
-    head.js(
-        // External libraries
-        root + 'lib/ext/jquery.min.js',
-        root + 'lib/ext/jquery.svg.min.js',
-        root + 'lib/ext/jquery.svgdom.min.js',
-        root + 'lib/ext/jquery-ui.min.js',
-        root + 'lib/ext/waypoints.min.js',
-        root + 'lib/ext/jquery.address.min.js',
-
-        // brat helper modules
-        root + 'lib/brat/configuration.js',
-        root + 'lib/brat/util.js',
-        root + 'lib/brat/annotation_log.js',
-        root + 'lib/ext/webfont.js',
-        // brat modules
-        root + 'lib/brat/dispatcher.js',
-        root + 'lib/brat/url_monitor.js',
-        root + 'lib/brat/visualizer.js',
-
-        // embedding configuration
-        root + 'lib/local/config.js',
-        // project-specific collection data
-        root + 'lib/local/collections.js',
-
-        // NOTE: non-local libraries
-        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
-        'https://spyysalo.github.io/conllu.js/conllu.js'
-    );
-
-    var webFontURLs = [
-//        root + 'static/fonts/Astloch-Bold.ttf',
-        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
-        root + 'static/fonts/Liberation_Sans-Regular.ttf'
-    ];
-
-    var setupAccordions = function() {
-        // standard jQuery UI "accordion" element initialization
-	$(".jquery-ui-accordion").accordion({
-	    collapsible: true,
-	    active: false
-	});
-    };
-
-    var setupTabs = function() {
-        // standard jQuery UI "tabs" element initialization
-        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
-
-        // use jQuery address to preserve tab state
-        // (see https://github.com/UniversalDependencies/docs/issues/65,
-        // http://stackoverflow.com/a/3330919)
-        if ($(".jquery-ui-tabs").length > 0) {
-            $.address.change(function(event){
-	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
-	    });
-	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
-	        window.location.hash = ui.tab.hash;
-	    });
-        }
-    };
-
-    head.ready(function() {
-        // set up UI tabs on page
-        setupTabs();
-        setupAccordions();
-
-        // mark current collection (filled in by Jekyll)
-        Collections.listing['_current'] = '';
-
-	// perform all embedding and support functions
-	Annodoc.activate(Config.bratCollData, Collections.listing);
-    });
-</script>
-
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114028504-2"></script>
 <script>
@@ -178,6 +102,82 @@ body {
     <li>1/2015-4/2015: Egyptian Colloquial Arabic, Level 5, 7, 8, International House Cairo, Cairo, Egypt</li>
     <li>8/2013-7/2014: Arabic for Non-Native Speakers, Advanced Level, Kuwait University, Kuwait City, Kuwait</li>
 </ul>
+
+<!-- support for embedded visualizations -->
+<script type="text/javascript">
+    var root = ''; // filled in by jekyll
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+        root + 'lib/ext/jquery.address.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding configuration
+        root + 'lib/local/config.js',
+        // project-specific collection data
+        root + 'lib/local/collections.js',
+
+        // NOTE: non-local libraries
+        'https://spyysalo.github.io/annodoc/lib/local/annodoc.js',
+        'https://spyysalo.github.io/conllu.js/conllu.js'
+    );
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    var setupAccordions = function() {
+        // standard jQuery UI "accordion" element initialization
+	$(".jquery-ui-accordion").accordion({
+	    collapsible: true,
+	    active: false
+	});
+    };
+
+    var setupTabs = function() {
+        // standard jQuery UI "tabs" element initialization
+        $(".jquery-ui-tabs").tabs({ heightStyle: "auto" });
+
+        // use jQuery address to preserve tab state
+        // (see https://github.com/UniversalDependencies/docs/issues/65,
+        // http://stackoverflow.com/a/3330919)
+        if ($(".jquery-ui-tabs").length > 0) {
+            $.address.change(function(event){
+	        $(".jquery-ui-tabs").tabs("select", window.location.hash)
+	    });
+	    $(".jquery-ui-tabs").bind("tabsselect", function(event, ui) { 
+	        window.location.hash = ui.tab.hash;
+	    });
+        }
+    };
+
+    head.ready(function() {
+        // set up UI tabs on page
+        setupTabs();
+        setupAccordions();
+
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = '';
+
+	// perform all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
 
 </body>
 </html>
