@@ -435,10 +435,10 @@ table.statustable {
   color: #444;
 }
 
-em strong, b {
+/* em strong, b {
   font-weight: 700;
   color: darkred;
-}
+} */
 
 h1, h2, h3, strong {
   font-weight: 600; /* standard, not extra bold */
